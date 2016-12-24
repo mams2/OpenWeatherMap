@@ -27,11 +27,13 @@ public class ListCities extends AppCompatActivity {
     private OkHttpClient client = new OkHttpClient();
     private Gson gson = new Gson();
     private String url_request;
+    private Intent telaCidade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_cities);
+        telaCidade = new Intent(this, CityScreen.class);
 
         Intent intent = getIntent();
         url_request = intent.getStringExtra("com.example.openweathermap.BUSCAR");
@@ -77,28 +79,30 @@ public class ListCities extends AppCompatActivity {
                 System.out.println(resposta.cities.get(0).temperature.temp_max);
                 String[] result = new String[15];
                 for(int i=0; i<15; i++) result[i] = resposta.cities.get(i).name;
-                ArrayAdapter<String> adapter =
-                        new ArrayAdapter<String>(getBaseContext(),
-                                android.R.layout.simple_list_item_1, result);
+
+                ArrayAdapter<CityInformation> adapter =
+                        new ArrayAdapter<CityInformation>(getBaseContext(),
+                                android.R.layout.simple_list_item_1, resposta.cities);
+
                 System.out.println("passou");
                 lista = (ListView) findViewById(R.id.lista);
                 lista.setAdapter(adapter);
-                // Coloca depois da linha no seu OnCreate onde você pega a referência do ListView
-// seta o listener para pegar o click do usuário no item do seu list View
                 lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                     public void onItemClick(AdapterView<?> parent, View view,
                                             int position, long id) {
-                        // pega o o item selecionado com os dados da pessoa
-                        String medico = (String) lista.getItemAtPosition(position);
-                        System.out.println(medico);
+                        CityInformation city = (CityInformation) lista.getItemAtPosition(position);
+                        System.out.println(city.name);
 
                         // cria a intent
-//                        Intent intent = new Intent(this, DetalhesMedicoActivity.class);
+
                         // seta o parametro do medico a exibir os dados
-//                        intent.putExtra( "MEDICO" , medico );
+                        telaCidade.putExtra( "com.example.openweathermap.NOME" , city.name);
+                        telaCidade.putExtra("com.example.openweathermap.MAX_TEMPERATURA", ""+(city.temperature.temp_max-273.0));
+                        telaCidade.putExtra("com.example.openweathermap.MIN_TEMPERATURA", ""+(city.temperature.temp_min-273.0));
+                        telaCidade.putExtra("com.example.openweathermap.DESCRICAO", city.weather.get(0).description);
                         //  chama a Activity que mostra os detalhes
-//                        startActivity(intent);
+                        startActivity(telaCidade);
 
                     }
 

@@ -11,4 +11,8 @@ public class CityInformation {
     @SerializedName("main")
     public TemperatureInformation temperature;
 
+    @Override
+    public String toString() {
+        return name;
+    }
 }
