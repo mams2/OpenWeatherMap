@@ -1,13 +1,12 @@
 package com.example.root.openweathermap;
 
-import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -28,16 +27,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
 
     public void buscarInformação(View view) {
-        if(marker == null){
-            Toast.makeText(MapsActivity.this, "Você precisa colocar um marcador no mapa antes de buscar",
-                    Toast.LENGTH_SHORT).show();
+        if(!isNetworkConnected()){
+            Toast.makeText(MapsActivity.this, "É preciso estar conectado a internet para usar o serviço. Por favor se conecte a internet!",
+                    Toast.LENGTH_LONG).show();
+        }
+        else if(marker == null){
+            Toast.makeText(MapsActivity.this, "Você precisa colocar um marcador no mapa antes de buscar," +
+                    " para fazer isso pressiona a tela no local que você deseja inserir o marcador.",
+                    Toast.LENGTH_LONG).show();
         }
         else{
             Intent intent = new Intent(this, ListCities.class);
@@ -48,24 +51,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+    private boolean isNetworkConnected(){
+        ConnectivityManager manager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = manager.getActiveNetworkInfo();
+        if(netInfo != null && netInfo.isConnected()){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
 
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-
-        // Add a marker in recife and move the camera
         LatLng recife = new LatLng(-8.046390, -34.888228);
-//        mMap.addMarker(new MarkerOptions().position(recife).title("Marker in Recife")).setDraggable(true);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(recife));
 
         //eventos
         mMap.setOnMarkerClickListener (new GoogleMap.OnMarkerClickListener(){
             @Override
             public boolean onMarkerClick(Marker arg0) {
-                Toast.makeText(MapsActivity.this, "O marcador esta na posição " + arg0.getPosition().toString(),
-                        Toast.LENGTH_SHORT).show();
                 return true;
             }
         });

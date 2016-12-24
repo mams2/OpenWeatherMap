@@ -2,8 +2,16 @@ package com.example.root.openweathermap;
 
 
 public class TemperatureInformation {
-    public double temp_min;
-    public double temp_max;
+    private double temp_min;
+    private double temp_max;
+
+    public double getTemp_min(){
+        return temp_min;
+    }
+
+    public double getTemp_max(){
+        return temp_max;
+    }
 
 }
 

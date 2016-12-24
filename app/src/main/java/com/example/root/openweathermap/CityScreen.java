@@ -13,7 +13,6 @@ public class CityScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city_screen);
-        System.out.println("imprimiu algo");
         Intent intent = getIntent();
 
         city = intent.getStringExtra("com.example.openweathermap.NOME");
@@ -22,16 +21,16 @@ public class CityScreen extends AppCompatActivity {
         description = intent.getStringExtra("com.example.openweathermap.DESCRICAO");
 
         TextView tcity = (TextView) findViewById(R.id.textView);
-        tcity.setText(city);
+        tcity.setText("City: " + city);
 
         TextView tmaxTemp = (TextView) findViewById(R.id.textView2);
-        tmaxTemp.setText(maxTemp);
+        tmaxTemp.setText("Max: " + maxTemp + "°");
 
         TextView tminTemp = (TextView) findViewById(R.id.textView3);
-        tminTemp.setText(minTemp);
+        tminTemp.setText("Min: "+ minTemp + "°");
 
         TextView tdescription = (TextView) findViewById(R.id.textView4);
-        tdescription.setText(description);
+        tdescription.setText("Description: " + description);
 
 
 

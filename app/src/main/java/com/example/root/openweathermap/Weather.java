@@ -2,5 +2,9 @@ package com.example.root.openweathermap;
 
 
 public class Weather {
-    public String description;
+    private String description;
+
+    public String getDescription(){
+        return description;
+    }
 }
