@@ -32,6 +32,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
     }
 
+    public void buscarNome(View view) {
+        if(!isNetworkConnected()){
+            Toast.makeText(MapsActivity.this, "É preciso estar conectado a internet para usar o serviço. Por favor se conecte a internet!",
+                    Toast.LENGTH_LONG).show();
+        }
+        else {
+            Intent intent = new Intent(this, FindByName.class);
+            startActivity(intent);
+        }
+    }
+
+
     public void buscarInformação(View view) {
         if(!isNetworkConnected()){
             Toast.makeText(MapsActivity.this, "É preciso estar conectado a internet para usar o serviço. Por favor se conecte a internet!",

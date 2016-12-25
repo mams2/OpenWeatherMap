@@ -40,7 +40,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".ListCities" />
-        <activity android:name=".CityScreen"></activity>
+        <activity android:name=".CityScreen" />
+        <activity android:name=".findByName" />
+        <activity android:name=".FindByName"></activity>
     </application>
 
 </manifest>

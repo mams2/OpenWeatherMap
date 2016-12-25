@@ -21,7 +21,7 @@ public class CityScreen extends AppCompatActivity {
         description = intent.getStringExtra("com.example.openweathermap.DESCRICAO");
 
         TextView tcity = (TextView) findViewById(R.id.textView);
-        tcity.setText("City: " + city);
+        tcity.setText("Cidade: " + city);
 
         TextView tmaxTemp = (TextView) findViewById(R.id.textView2);
         tmaxTemp.setText("Max: " + maxTemp + "°");
@@ -30,7 +30,7 @@ public class CityScreen extends AppCompatActivity {
         tminTemp.setText("Min: "+ minTemp + "°");
 
         TextView tdescription = (TextView) findViewById(R.id.textView4);
-        tdescription.setText("Description: " + description);
+        tdescription.setText("Descrição: " + description);
 
 
 

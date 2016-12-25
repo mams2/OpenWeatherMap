@@ -42,7 +42,7 @@ public class ListCities extends AppCompatActivity {
         task.execute();
     }
 
-    public class GetHttp extends AsyncTask<String, Void, RespostaServidor> {
+    private class GetHttp extends AsyncTask<String, Void, RespostaServidor> {
         private ProgressDialog load;
         private ListView lista;
 
