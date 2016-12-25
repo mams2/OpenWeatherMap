@@ -98,7 +98,16 @@ public class FindByName extends AppCompatActivity {
                     .url(url)
                     .build();
             Response response = client.newCall(request).execute();
-            return gson.fromJson(response.body().charStream(), CityInformation.class);
+            if(isSuccess(response.code())) {
+                return gson.fromJson(response.body().charStream(), CityInformation.class);
+            }
+            else{
+                return null;
+            }
+        }
+
+        private boolean isSuccess(int status){
+            return status >= 200 && status < 300;
         }
 
 

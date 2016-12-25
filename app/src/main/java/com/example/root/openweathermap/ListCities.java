@@ -101,7 +101,16 @@ public class ListCities extends AppCompatActivity {
                     .build();
 
             Response response = client.newCall(request).execute();
-            return gson.fromJson(response.body().charStream(), RespostaServidor.class);
+            if(isSuccess(response.code())) {
+                return gson.fromJson(response.body().charStream(), RespostaServidor.class);
+            }
+            else{
+                return null;
+            }
+        }
+
+        private boolean isSuccess(int status){
+            return status >= 200 && status < 300;
         }
 
 
