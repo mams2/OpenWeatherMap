@@ -6,8 +6,6 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -36,14 +34,13 @@ public class FindByName extends AppCompatActivity {
     }
 
     public void capturaNomes(View view) {
-//        Intent intent = new Intent(this, DisplayMessageActivity.class);
         EditText name = (EditText) findViewById(R.id.editText5);
         String nome = name.getText().toString();
         EditText code = (EditText) findViewById(R.id.editText6);
         String codigo = code.getText().toString();
 
-        if(nome!=null && !nome.equals("")){
-            if(codigo!=null && !codigo.equals("")){
+        if(!nome.equals("")){
+            if(!codigo.equals("")){
                 url_request = "http://api.openweathermap.org/data/2.5/weather?q="+nome+","+codigo+"&APPID=fb83342443d6727211b36da403438b02";
             }
             else{
@@ -60,7 +57,6 @@ public class FindByName extends AppCompatActivity {
 
     private class GetHttp extends AsyncTask<String, Void, CityInformation> {
         private ProgressDialog load;
-        private ListView lista;
 
         @Override
         protected void onPreExecute(){
