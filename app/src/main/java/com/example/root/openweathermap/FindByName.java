@@ -75,7 +75,8 @@ public class FindByName extends AppCompatActivity {
         @Override
         protected void onPostExecute(CityInformation resposta) {
             if(resposta == null){
-                Toast.makeText(FindByName.this, "Erro inesperado, por favor tentar novamente em alguns segundos.",
+                Toast.makeText(FindByName.this, "Erro inesperado, por favor verificar as informações inseridas" +
+                        " e tentar novamente em alguns segundos.",
                         Toast.LENGTH_LONG).show();
             }else {
 
