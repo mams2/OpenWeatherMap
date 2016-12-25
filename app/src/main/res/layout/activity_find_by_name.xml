@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="Nome da Cidade"
+        android:hint="@string/nome_cidade"
         android:ems="10"
         android:id="@+id/editText5" />
 
@@ -17,12 +17,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="Codigo do país (Ex: uk)"
+        android:hint="@string/codigo_pais"
         android:ems="10"
         android:id="@+id/editText6" />
 
     <Button
-        android:text="Buscar"
+        android:text="@string/button_buscar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button"

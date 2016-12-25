@@ -3,5 +3,12 @@
     <string name="title_activity_maps">Weather Map</string>
     <string name="button_buscar">Buscar</string>
     <string name="button_nome">Busca por Nome</string>
+    <string name="nome_cidade">Nome da Cidade</string>
+    <string name="codigo_pais">Codigo do país (Ex: uk)</string>
+
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDsTCvFWJMu4WPiuGyaorAB0dUStP_Ywbs</string>
+    <string name="cidade">Cidade</string>
+    <string name="tempMinima">Temperatura mínima</string>
+    <string name="tempMaxima">Temperatura máxima</string>
+    <string name="descricao_clima">Descrição do clima</string>
 </resources>
